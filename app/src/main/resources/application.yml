@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /notificator-api
+
+api:
+  security:
+    token:
+      secret: 12345678901234567890123456789012
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/NOTIFICATOR_API
+    username: postgres
+    password: postgres
+  flyway:
+    enabled: true
+    baseline-description: Notificator API
+    baseline-version: 1.0
+    baseline-on-migrate: true
+    url: jdbc:postgresql://localhost:5432/NOTIFICATOR_API
+    user: postgres
+    password: postgres
+    locations: classpath:db/migration
