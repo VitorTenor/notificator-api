@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -24,13 +23,15 @@ public class UserClient implements UserGateway {
 
     @Override
     @Transactional
-    public void register(UserRequest userRequest) {
+    public String register(UserRequest userRequest) {
 
         final var userModel = createUserModel(userRequest);
         final var userAuth = createUserAuth(userRequest);
 
         userRepository.save(userModel);
         authenticationUserRepository.save(userAuth);
+
+        return "User created successfully";
     }
 
     private AuthenticationUserModel createUserAuth(UserRequest userRequest) {

@@ -5,5 +5,5 @@ import com.vitortenorio.notificator.entity.user.UserRequest;
 
 public interface UserGateway {
 
-    void register(UserRequest userRequest);
+    String register(UserRequest userRequest);
 }

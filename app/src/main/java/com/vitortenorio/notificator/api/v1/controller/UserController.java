@@ -15,7 +15,8 @@ public class UserController {
     private final RegisterUseCase registerUseCase;
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRequest userRequest) {
-        registerUseCase.execute(userRequest);
+    public String register(@RequestBody UserRequest userRequest) throws Exception {
+        Thread.sleep(3000);
+        return registerUseCase.execute(userRequest);
     }
 }

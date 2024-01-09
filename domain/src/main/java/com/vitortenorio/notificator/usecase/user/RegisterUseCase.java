@@ -13,7 +13,7 @@ public class RegisterUseCase {
         this.userGateway = userGateway;
     }
 
-    public void execute(final UserRequest userRequest) {
-        this.userGateway.register(userRequest);
+    public String execute(final UserRequest userRequest) {
+        return this.userGateway.register(userRequest);
     }
 }
