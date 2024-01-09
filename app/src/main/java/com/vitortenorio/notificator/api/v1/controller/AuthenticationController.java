@@ -15,7 +15,7 @@ public class AuthenticationController {
     private final LoginUseCase loginUseCase;
 
     @PostMapping("/login")
-    public AuthenticationResponse login(AuthenticationRequest login) {
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest login) {
         return loginUseCase.execute(login);
     }
 }

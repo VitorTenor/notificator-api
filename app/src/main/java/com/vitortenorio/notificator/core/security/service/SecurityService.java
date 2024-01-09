@@ -1,5 +1,6 @@
 package com.vitortenorio.notificator.core.security.service;
 
+import com.vitortenorio.notificator.api.v1.model.AuthenticationUserModel;
 import com.vitortenorio.notificator.api.v1.repository.AuthenticationUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
