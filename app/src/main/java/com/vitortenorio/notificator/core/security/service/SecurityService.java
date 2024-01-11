@@ -15,7 +15,7 @@ public class SecurityService implements UserDetailsService {
     private final AuthenticationUserRepository authenticationUserRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return authenticationUserRepository.findUserDetailsByLogin(username);
+    public UserDetails loadUserByUsername(final String login) throws UsernameNotFoundException {
+        return authenticationUserRepository.findUserDetailsByLogin(login);
     }
 }

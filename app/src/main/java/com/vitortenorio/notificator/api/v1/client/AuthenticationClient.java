@@ -20,11 +20,11 @@ public class AuthenticationClient implements AuthenticationGateway {
 
     @Override
     public AuthenticationResponse login(AuthenticationRequest user) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(user.login(), user.password());
+        final var usernamePassword = new UsernamePasswordAuthenticationToken(user.login(), user.password());
 
         authenticationManager.authenticate(usernamePassword);
 
-        var userModel = authenticationUserRepository.findByLogin(user.login());
+        final var userModel = authenticationUserRepository.findByLogin(user.login());
 
         return new AuthenticationResponse(
                 tokenService.generateToken(userModel),
