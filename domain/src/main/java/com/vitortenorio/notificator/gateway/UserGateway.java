@@ -1,9 +1,9 @@
 package com.vitortenorio.notificator.gateway;
 
 
-import com.vitortenorio.notificator.entity.user.UserRequest;
+import com.vitortenorio.notificator.entity.user.UserRegisterEntity;
 
 public interface UserGateway {
 
-    String register(UserRequest userRequest);
+    String register(UserRegisterEntity userRegisterEntity);
 }

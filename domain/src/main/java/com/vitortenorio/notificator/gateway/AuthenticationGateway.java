@@ -1,10 +1,10 @@
 package com.vitortenorio.notificator.gateway;
 
-import com.vitortenorio.notificator.entity.authentication.AuthenticationRequest;
-import com.vitortenorio.notificator.entity.authentication.AuthenticationResponse;
+import com.vitortenorio.notificator.entity.authentication.LoginEntity;
+import com.vitortenorio.notificator.entity.authentication.AuthenticationEntity;
 
 public interface AuthenticationGateway {
 
-    AuthenticationResponse login(AuthenticationRequest authenticationRequest);
+    AuthenticationEntity login(LoginEntity loginEntity);
 
 }

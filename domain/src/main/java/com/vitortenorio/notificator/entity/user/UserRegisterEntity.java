@@ -1,6 +1,6 @@
 package com.vitortenorio.notificator.entity.user;
 
-public record UserRequest (
+public record UserRegisterEntity(
     String username,
     String email,
     String password

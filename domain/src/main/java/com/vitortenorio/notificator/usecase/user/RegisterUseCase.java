@@ -1,6 +1,6 @@
 package com.vitortenorio.notificator.usecase.user;
 
-import com.vitortenorio.notificator.entity.user.UserRequest;
+import com.vitortenorio.notificator.entity.user.UserRegisterEntity;
 import com.vitortenorio.notificator.gateway.UserGateway;
 
 import javax.inject.Named;
@@ -13,7 +13,7 @@ public class RegisterUseCase {
         this.userGateway = userGateway;
     }
 
-    public String execute(final UserRequest userRequest) {
-        return this.userGateway.register(userRequest);
+    public String execute(final UserRegisterEntity userRegisterEntity) {
+        return this.userGateway.register(userRegisterEntity);
     }
 }

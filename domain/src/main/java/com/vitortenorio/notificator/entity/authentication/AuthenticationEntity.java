@@ -1,6 +1,6 @@
 package com.vitortenorio.notificator.entity.authentication;
 
-public record AuthenticationResponse(
+public record AuthenticationEntity(
     String token,
     String refreshToken
 ) {

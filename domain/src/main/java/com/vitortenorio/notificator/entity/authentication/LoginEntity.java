@@ -1,6 +1,6 @@
 package com.vitortenorio.notificator.entity.authentication;
 
-public record AuthenticationRequest (
+public record LoginEntity(
     String login,
     String password
 ){

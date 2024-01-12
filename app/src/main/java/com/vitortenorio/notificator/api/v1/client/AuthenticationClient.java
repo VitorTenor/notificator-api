@@ -2,8 +2,8 @@ package com.vitortenorio.notificator.api.v1.client;
 
 import com.vitortenorio.notificator.api.v1.repository.AuthenticationUserRepository;
 import com.vitortenorio.notificator.core.security.service.TokenService;
-import com.vitortenorio.notificator.entity.authentication.AuthenticationRequest;
-import com.vitortenorio.notificator.entity.authentication.AuthenticationResponse;
+import com.vitortenorio.notificator.entity.authentication.LoginEntity;
+import com.vitortenorio.notificator.entity.authentication.AuthenticationEntity;
 import com.vitortenorio.notificator.gateway.AuthenticationGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,14 +19,14 @@ public class AuthenticationClient implements AuthenticationGateway {
     private final AuthenticationUserRepository authenticationUserRepository;
 
     @Override
-    public AuthenticationResponse login(AuthenticationRequest user) {
+    public AuthenticationEntity login(LoginEntity user) {
         final var usernamePassword = new UsernamePasswordAuthenticationToken(user.login(), user.password());
 
         authenticationManager.authenticate(usernamePassword);
 
         final var userModel = authenticationUserRepository.findByLogin(user.login());
 
-        return new AuthenticationResponse(
+        return new AuthenticationEntity(
                 tokenService.generateToken(userModel),
                 tokenService.generateToken(userModel)
         );

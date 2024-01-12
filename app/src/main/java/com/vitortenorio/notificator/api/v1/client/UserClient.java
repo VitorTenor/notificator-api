@@ -5,7 +5,7 @@ import com.vitortenorio.notificator.api.v1.model.UserModel;
 import com.vitortenorio.notificator.api.v1.repository.AuthenticationUserRepository;
 import com.vitortenorio.notificator.api.v1.repository.UserRepository;
 import com.vitortenorio.notificator.entity.enums.UserType;
-import com.vitortenorio.notificator.entity.user.UserRequest;
+import com.vitortenorio.notificator.entity.user.UserRegisterEntity;
 import com.vitortenorio.notificator.gateway.UserGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,10 +23,10 @@ public class UserClient implements UserGateway {
 
     @Override
     @Transactional
-    public String register(UserRequest userRequest) {
+    public String register(UserRegisterEntity userRegisterEntity) {
 
-        final var userModel = createUserModel(userRequest);
-        final var userAuth = createUserAuth(userRequest);
+        final var userModel = createUserModel(userRegisterEntity);
+        final var userAuth = createUserAuth(userRegisterEntity);
 
         userRepository.save(userModel);
         authenticationUserRepository.save(userAuth);
@@ -34,23 +34,23 @@ public class UserClient implements UserGateway {
         return "User created successfully";
     }
 
-    private AuthenticationUserModel createUserAuth(UserRequest userRequest) {
+    private AuthenticationUserModel createUserAuth(UserRegisterEntity userRegisterEntity) {
         final var userAuth = new AuthenticationUserModel();
-        userAuth.setEmail(userRequest.email());
-        userAuth.setLogin(userRequest.email());
-        userAuth.setUsername(userRequest.username());
+        userAuth.setEmail(userRegisterEntity.email());
+        userAuth.setLogin(userRegisterEntity.email());
+        userAuth.setUsername(userRegisterEntity.username());
         userAuth.setEnabled(true);
-        userAuth.setPassword(new BCryptPasswordEncoder().encode(userRequest.password()));
+        userAuth.setPassword(new BCryptPasswordEncoder().encode(userRegisterEntity.password()));
         userAuth.setCreatedAt(LocalDateTime.now());
         userAuth.setUpdatedAt(LocalDateTime.now());
         userAuth.setRole(UserType.ADMIN);
         return userAuth;
     }
 
-    private UserModel createUserModel(UserRequest userRequest) {
+    private UserModel createUserModel(UserRegisterEntity userRegisterEntity) {
         final var userModel = new UserModel();
-        userModel.setUsername(userRequest.username());
-        userModel.setEmail(userRequest.email());
+        userModel.setUsername(userRegisterEntity.username());
+        userModel.setEmail(userRegisterEntity.email());
         userModel.setCreatedAt(LocalDateTime.now());
         userModel.setUpdatedAt(LocalDateTime.now());
         userModel.setEnabled(true);

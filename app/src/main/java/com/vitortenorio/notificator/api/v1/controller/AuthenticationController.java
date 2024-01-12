@@ -1,11 +1,15 @@
 package com.vitortenorio.notificator.api.v1.controller;
 
 
-import com.vitortenorio.notificator.entity.authentication.AuthenticationRequest;
-import com.vitortenorio.notificator.entity.authentication.AuthenticationResponse;
+import com.vitortenorio.notificator.api.v1.disassembler.imp.AuthenticationDisassembler;
+import com.vitortenorio.notificator.api.v1.input.LoginInput;
+import com.vitortenorio.notificator.api.v1.output.AuthenticationOutput;
 import com.vitortenorio.notificator.usecase.authentication.LoginUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -13,9 +17,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/authentication")
 public class AuthenticationController {
     private final LoginUseCase loginUseCase;
+    private final AuthenticationDisassembler authenticationDisassembler;
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest login) {
-        return loginUseCase.execute(login);
+    public AuthenticationOutput login(@RequestBody LoginInput login) {
+        return authenticationDisassembler.toOutput(loginUseCase.execute(login.toEntity()));
     }
 }
